@@ -1,0 +1,13 @@
+FROM openjdk:18-alpine
+
+WORKDIR /app
+
+COPY pom.xml ./
+
+RUN mvn package
+
+COPY target/*.jar ./
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "vehicle-api-1.0-SNAPSHOT.jar"]

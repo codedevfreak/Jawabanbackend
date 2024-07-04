@@ -1,0 +1,24 @@
+@SpringBootTest
+public class VehicleServiceIntegrationTest {
+
+    @Autowired
+    private VehicleService vehicleService;
+
+    @Autowired
+    private VehicleRepository vehicleRepository;
+
+    @Test
+    public void getAllVehiclesTest() {
+        List<Vehicle> vehicles = vehicleService.getAllVehicles(null, null);
+        assertThat(vehicles).isNotEmpty();
+    }
+
+    @Test
+    public void getVehicleByIdTest() {
+        Long id = 1L; // Ganti dengan ID kendaraan yang valid
+        Vehicle vehicle = vehicleService.getVehicleById(id).orElseThrow(() -> new RuntimeException("Vehicle not found"));
+        assertThat(vehicle.getId()).isEqualTo(id);
+    }
+
+    // Tambahkan test untuk metode service lainnya
+}
